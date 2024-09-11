@@ -90,7 +90,7 @@ const AddedItems = () => {
     console.log("Order data being sent:", orderData);
 
     try {
-      const response = await fetch('http://localhost:5000/sendOrder', {
+      const response = await fetch('http://server-server.gofastapi.com/sendOrder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
