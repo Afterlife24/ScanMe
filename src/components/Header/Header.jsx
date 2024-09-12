@@ -16,12 +16,21 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     const now = new Date();
     const hour = now.getHours();
 
+  //   if (hour >= 5 && hour < 12) {
+  //     setGreeting("Bonjour");
+  //   } else if (hour >= 12 && hour < 18) {
+  //     setGreeting("bon après-midi");
+  //   } else {
+  //     setGreeting("bonne soirée");
+  //   }
+    // }, []);
+    
     if (hour >= 5 && hour < 12) {
       setGreeting("Bonjour");
     } else if (hour >= 12 && hour < 18) {
-      setGreeting("bon après-midi");
+      setGreeting("Bonjour");
     } else {
-      setGreeting("bonne soirée");
+      setGreeting("Bonjour");
     }
   }, []);
 
@@ -58,7 +67,7 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
         <>
           <div className="welcome">
             <h2>
-              Bonjour, {greeting}!{" "}
+              {greeting}!{" "}
               {/* <span role="img" aria-label="Wave">
                 👋
               </span> */}

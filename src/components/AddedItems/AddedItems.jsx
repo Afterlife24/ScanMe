@@ -16,6 +16,7 @@ const AddedItems = () => {
   const isAddpage = true;
 
   const [option, setOption] = useState(false);
+  const [loading, setLoading] = useState(false); // New state to track loading
   const [orders, setOrders] = useState(() => {
     const savedOrders = sessionStorage.getItem('orders');
     return savedOrders ? JSON.parse(savedOrders) : [];
@@ -78,8 +79,8 @@ const AddedItems = () => {
     const dishes = addedItems.map(item => ({
       name: item.name,
       quantity: item.count,
-      image: item.image, // Ensure this is included
-      price: item.price   // Ensure this is included
+      image: item.image,
+      price: item.price
     }));
 
     const orderData = {
@@ -90,6 +91,7 @@ const AddedItems = () => {
     console.log("Order data being sent:", orderData);
 
     try {
+      setLoading(true); // Set loading to true when sending starts
       const response = await fetch('https://server-server.gofastapi.com/sendOrder', {
         method: 'POST',
         headers: {
@@ -102,15 +104,19 @@ const AddedItems = () => {
         console.log('Order sent successfully');
         setOrders(prevOrders => [...addedItems, ...prevOrders]); // New orders on top
         clearItems();
+        toast.success("Order sent successfully!");
       } else {
         console.error('Failed to send order');
+        toast.error("Failed to send order. Please try again.");
       }
     } catch (error) {
       console.error('Error sending order:', error);
+      toast.error("Error sending order. Please try again.");
+    } finally {
+      setLoading(false); // Reset loading when request completes
     }
   };
 
-  // Calculate total cost of orders
   const ordersTotalCost = orders.reduce((acc, item) => {
     const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
     const count = parseInt(item.count, 10);
@@ -130,7 +136,7 @@ const AddedItems = () => {
         <ToastContainer />
         <div className="added-items">
           <h3 style={{ textAlign: "center" }}>
-            passer la commande
+            Passer la commande
           </h3>
           {addedItems.length === 0 ? (
             <p>No items added yet...</p>
@@ -159,7 +165,7 @@ const AddedItems = () => {
                       onClick={() => removeItem(item.id)}
                       className="delete-button"
                     >
-                     <img src={icons.delete_icon} alt="" />
+                      <img src={icons.delete_icon} alt="" />
                     </button>
                   </div>
                 </li>
@@ -172,8 +178,12 @@ const AddedItems = () => {
           <button className="go-back" onClick={handleGoBack}>
             Go Back
           </button>
-          <button className="send-order" onClick={sendOrder}>
-            Send Order
+          <button
+            className="send-order"
+            onClick={sendOrder}
+            disabled={loading} // Disable the button when loading
+          >
+            {loading ? "Sending..." : "Send Order"} {/* Show loading text */}
           </button>
         </div>
         <div className="your-orders">
@@ -189,7 +199,7 @@ const AddedItems = () => {
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="order-item-image" // Add styling for image
+                        className="order-item-image"
                       />
                       <div className="order-item-info">
                         <h3>{item.name}</h3>
