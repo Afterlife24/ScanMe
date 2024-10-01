@@ -7,7 +7,7 @@ export const generalpics = {
 };
 
 const API_KEY = 'AIzaSyA6SFA1LGwRimgKm88YUVNOj2uSzX2d5JI';
-const SPREADSHEET_ID = '1e-g1X-j6qBJ6U_OrSoooF6UsP3Mn3AY0THBkNcHzSPo';
+const SPREADSHEET_ID = '1bqduhfi5bmOipO0jYCTNa-xOQrHYr3Z6JADXf2AMfyY';
 const RANGE = 'Sheet1!A2:H';
 
 function convertDriveUrlToDirect(url) {
