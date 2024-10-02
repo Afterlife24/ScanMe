@@ -139,6 +139,14 @@ p {
   padding: 0 20px;
 }
 
+.added-items ul,
+.your-orders ul {
+  list-style-type: none;
+  /* Removes the bullets */
+  padding: 0;
+  /* Optional: removes padding */
+}
+
 .order-item {
   display: flex;
   align-items: center;
