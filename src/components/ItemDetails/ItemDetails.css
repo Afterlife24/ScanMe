@@ -45,8 +45,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 0;
-  width: 90%;
+  width: 85%;
+  height: 500px;
   flex-shrink: 0;
+  margin-bottom: 60px;
 }
 
 .menu-details-inner  h2{
@@ -426,6 +428,7 @@ transparent;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 8px;
   position: relative;
   
 }

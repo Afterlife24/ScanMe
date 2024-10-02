@@ -195,22 +195,7 @@ const ItemDetails = () => {
                   </div>
 
                   <p className="menu-details-desc">{item.desc}</p>
-                  <div className="menu-details-buttons">
-                    <button
-                      onClick={handleNavigate}
-                      className="menu-details-button btn-29"
-                    >
-                      <span className="text-container">
-                        <span className="text">Go to cart</span>
-                      </span>
-                    </button>
-                    <button
-                      onClick={handleAddItem}
-                      className="btn-80 menu-details-button"
-                    >
-                      <span>Add</span>
-                    </button>
-                  </div>
+
                   <div className="quantity-buttons">
                     <p
                       onClick={handleQuantityDecrement}
@@ -229,6 +214,24 @@ const ItemDetails = () => {
                       +
                     </p>
                   </div>
+                  
+                  <div className="menu-details-buttons">
+                    <button
+                      onClick={handleNavigate}
+                      className="menu-details-button btn-29"
+                    >
+                      <span className="text-container">
+                        <span className="text">Go to cart</span>
+                      </span>
+                    </button>
+                    <button
+                      onClick={handleAddItem}
+                      className="btn-80 menu-details-button"
+                    >
+                      <span>Add</span>
+                    </button>
+                  </div>
+                  
                 </div>
               </div>
             ))}
