@@ -19,7 +19,7 @@ function MenuDisplay({ item, onClick }) {
         <div className="menu-item-otherinfo">
           <p className="menu-item-otherinfo-price">{item.price}</p>
         </div>
-        <p className="menu-item-description">{item.desc}</p>
+        {/* <p className="menu-item-description">{item.desc}</p> */}
       </div>
     </div>
   );

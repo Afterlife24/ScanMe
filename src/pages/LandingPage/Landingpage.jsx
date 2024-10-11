@@ -1,3 +1,5 @@
+//fatching the table number from url
+
 import React, { useEffect, useState } from "react";
 import Mainmenu from "../../components/Mainmenu/Mainmenu";
 import Header from "../../components/Header/Header";

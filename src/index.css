@@ -8,7 +8,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(  #ffced8 50%,#f9c8c8)
-    no-repeat;
+  background:linear-gradient(#fff7f2,#efd6c7);
   font-family: "Open Sans", Arial;
 }
