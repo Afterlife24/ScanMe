@@ -377,7 +377,7 @@ const AddedItems = () => {
         <div className="added-items">
           {orderSent && tableNum === 0 ? (
             <h3 style={{ textAlign: "center" }}>
-              Collect the order from the restaurant and Remember the Token ID of our Order
+              Collect the order from the restaurant and Remember the Token ID
             </h3>
           ) : (
             <h3 style={{ textAlign: "center" }}>
