@@ -91,14 +91,20 @@ const AddedItems = () => {
     console.log("Order data being sent:", orderData);
 
     try {
-      setLoading(true); // Set loading to true when sending starts
-      const response = await fetch('https://server-server.gofastapi.com/sendOrder', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData),
-      });
+  setLoading(true); // Set loading to true when sending starts
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/sendOrder`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData),
+  });
+} catch (error) {
+  console.error('Error sending order:', error);
+} finally {
+  setLoading(false); // Set loading to false when sending ends
+}
+
 
       if (response.ok) {
         console.log('Order sent successfully');
