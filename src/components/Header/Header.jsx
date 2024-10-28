@@ -151,7 +151,7 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
   //  API endpoint
   const sendReservationData = async () => {
     try {
-      const response = await fetch("https://server2-server2/reserveTable", {
+      const response = await fetch("https://server2-server2.gofastapi.com/reserveTable", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
