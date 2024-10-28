@@ -1,4 +1,4 @@
-/* .header {
+.header {
   margin-top: 2rem;
   gap: 70%;
 }
@@ -86,7 +86,7 @@
   color: #ffffff;
   background-color: transparent;
   pointer-events: painted;
-} */
+}
 
 
 
@@ -106,7 +106,7 @@
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-.header {
+/* .header {
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
@@ -302,4 +302,4 @@
     padding: 12px;
     width: 100%;
   }
-}
+} */
