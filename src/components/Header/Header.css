@@ -536,7 +536,7 @@
 
 /* Styles for the Reserve Table button */
 .reservation-btn {
-  background-color: #007bff;
+  background-color: #dfdaf3;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -547,7 +547,7 @@
 }
 
 .reservation-btn:hover {
-  background-color: #0056b3;
+  background-color:#dfdaf3;
 }
 
 /* Responsive styling for reservation form */
