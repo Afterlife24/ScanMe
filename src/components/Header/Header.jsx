@@ -466,30 +466,27 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
 
                 <div className="reservation-input">
                   <input
-                    type="text"
+                    type="date"
                     name="date"
                     value={reservation.date}
                     onChange={handleReservationChange}
                     required
-                    placeholder="YYYY-MM-DD" // Update placeholder for guidance
-                    pattern="\d{4}-\d{2}-\d{2}" // Pattern for YYYY-MM-DD
                     className="reservation-date"
+                    placeholder="Select Date"
+                    
                   />
                 </div>
 
                 <div className="reservation-input">
                   <input
-                    type="text"
+                    type="time"
                     name="time"
                     value={reservation.time}
                     onChange={handleReservationChange}
                     required
-                    placeholder="HH:MM" // Update placeholder for guidance
-                    pattern="([01]\d|2[0-3]):([0-5]\d)" // Pattern for HH:MM
                     className="reservation-time"
                   />
                 </div>
-
 
                 <div className="reservation-input">
                   <select
