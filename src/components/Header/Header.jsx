@@ -329,27 +329,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { icons } from "../../assets/icons/icons";
@@ -363,6 +342,7 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
   const { tableNum } = useTableNum();
   const navigate = useNavigate();
   const [option, setOption] = useState(false);
+  const [showReservationForm, setShowReservationForm] = useState(false); // Control form visibility
   const [reservation, setReservation] = useState({
     name: "",
     phone: "",
@@ -370,20 +350,26 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     time: "",
     persons: "",
   });
-  const [showReservationForm, setShowReservationForm] = useState(false);
 
   const handleMenuoption = () => {
     setOption(true);
   };
 
+  const toggleReservationForm = () => {
+    setShowReservationForm(prev => !prev); // Toggle form visibility
+  };
+
+  // Handle reservation form inputs
   const handleReservationChange = (e) => {
     const { name, value } = e.target;
     setReservation((prev) => ({
       ...prev,
       [name]: value,
     }));
+    if (name === "time") e.target.blur();
   };
 
+  //  API endpoint
   const sendReservationData = async () => {
     try {
       const response = await fetch("https://server3-server3.gofastapi.com/reserveTable", {
@@ -395,9 +381,12 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
       });
 
       if (response.ok) {
+        const result = await response.json();
         toast.success("Reservation successful!");
+        setReservation({ name: "", phone: "", date: "", time: "", persons: "" }); // Reset form
+        setShowReservationForm(false); // Close form on success
       } else {
-        toast.error("Failed to reserve. Please try again.")
+        toast.error("Failed to reserve. Please try again.");
       }
     } catch (error) {
       console.error("Error sending reservation:", error);
@@ -406,10 +395,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
 
   const handleReservationSubmit = () => {
     sendReservationData();
-  };
-
-  const toggleReservationForm = () => {
-    setShowReservationForm(!showReservationForm);
   };
 
   return (
@@ -444,15 +429,13 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
           />
         )}
       </div>
-
       <ToastContainer />
 
       {!isAddpage && !isMenu && tableNum === 0 && (
         <>
           <button onClick={toggleReservationForm} className="reservation-btn">
-            {showReservationForm ? "Close Reservation Form" : "Reserve a Table"}
+            {showReservationForm ? "Close Reservation Form" : "Reserve Table"}
           </button>
-
           {showReservationForm && (
             <div className="reservation-form">
               <h4>Reserve a Table</h4>
@@ -504,23 +487,49 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
                 </div>
 
                 <div className="reservation-input">
-                  <input
-                    type="number"
+                  <select
                     name="persons"
                     value={reservation.persons}
                     onChange={handleReservationChange}
                     required
-                    placeholder="Persons"
                     className="reservation-persons"
-                  />
+                  >
+                    <option value="" disabled>
+                      Persons
+                    </option>
+                    {[...Array(20).keys()].map((num) => (
+                      <option key={num + 1} value={num + 1}>
+                        {num + 1}
+                      </option>
+                    ))}
+                  </select>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={handleReservationSubmit}
+                  className="reservation-btn"
+                >
+                  Reserve
+                </button>
               </form>
-              <button onClick={handleReservationSubmit} className="reservation-btn">
-                Submit
-              </button>
             </div>
           )}
         </>
+      )}
+
+      {!isAddpage && !isMenu && (
+        <div className="wrap-input-17">
+          <div className="search-box">
+            <button className="btn-search">🔍</button>
+            <input
+              onChange={onSearchChange}
+              type="text"
+              className="input-search"
+              placeholder="Search..."
+            />
+          </div>
+        </div>
       )}
     </>
   );
