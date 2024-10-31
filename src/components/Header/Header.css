@@ -336,6 +336,7 @@
 
 
 
+/* General Header Styling */
 .header {
   margin-top: 2rem;
   display: flex;
@@ -367,7 +368,7 @@
   margin: 0;
 }
 
-
+/* Responsive header adjustments */
 @media (max-width: 768px) {
 
   .menu-icon,
@@ -394,6 +395,7 @@
   }
 }
 
+/* Search box styling */
 .wrap-input-17 {
   width: 100%;
   display: flex;
@@ -401,7 +403,6 @@
   align-items: center;
   margin-top: 1rem;
 }
-
 
 .wrap-input-17 * {
   box-sizing: border-box;
@@ -451,106 +452,7 @@
   pointer-events: painted;
 }
 
-
-
-
-
-
-.reservation-form {
-  padding: 15px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  margin: 20px 0;
-  text-align: center;
-
-}
-
-.reservation-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.reservation-input {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex: 1;
-}
-
-.reservation-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.reservation-date,
-.reservation-time,
-.reservation-persons,
-.reservation-phone,
-.reservation-name {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 100%;
-  min-width: 70px;
-}
-
-.reservation-btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.reservation-btn:hover {
-  background-color: #45a049;
-}
-
-@media (max-width: 768px) {
-  .reservation-row {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .reservation-input {
-    width: 48%;
-  }
-
-  .reservation-input:nth-child(3),
-  .reservation-input:nth-child(2),
-  .reservation-input:nth-child(1) {
-    width: 100%;
-  }
-
-  .reservation-btn {
-    padding: 12px;
-    width: 100%;
-  }
-}
-
-/* Styles for the Reserve Table button */
-.reservation-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 15px 0;
-  font-size: 1rem;
-}
-
-.reservation-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Responsive styling for reservation form */
+/* Styles for the reservation form */
 .reservation-form {
   padding: 20px;
   background-color: #f9f9f9;
@@ -560,9 +462,10 @@
   max-width: 500px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  /* Initially hidden; controlled via JavaScript */
 }
 
-/* Styling for form rows and inputs */
 .reservation-row {
   display: flex;
   flex-wrap: wrap;
@@ -587,12 +490,27 @@
   box-sizing: border-box;
 }
 
-/* Adjust button to be full width on smaller screens */
-@media (max-width: 480px) {
+/* Styling for the Reserve Table button */
+.reservation-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px 0;
+  font-size: 1rem;
+  width: 100%;
+}
 
-  .reservation-btn,
-  .reservation-form {
-    width: 100%;
+.reservation-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styling for mobile screens */
+@media (max-width: 480px) {
+  .reservation-row {
+    flex-direction: column;
   }
 
   .reservation-input {
@@ -603,4 +521,9 @@
     padding: 10px;
     font-size: 0.9rem;
   }
+}
+
+/* Show reservation form when the button is clicked */
+.show-reservation-form .reservation-form {
+  display: block;
 }

@@ -363,7 +363,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
   const { tableNum } = useTableNum();
   const navigate = useNavigate();
   const [option, setOption] = useState(false);
-  const [showReservationForm, setShowReservationForm] = useState(false); // Control form visibility
   const [reservation, setReservation] = useState({
     name: "",
     phone: "",
@@ -371,13 +370,10 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     time: "",
     persons: "",
   });
+  const [showReservationForm, setShowReservationForm] = useState(false);
 
   const handleMenuoption = () => {
     setOption(true);
-  };
-
-  const toggleReservationForm = () => {
-    setShowReservationForm(prev => !prev); // Toggle form visibility
   };
 
   // Handle reservation form inputs
@@ -387,7 +383,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
       ...prev,
       [name]: value,
     }));
-    if (name === "time") e.target.blur();
   };
 
   //  API endpoint
@@ -404,18 +399,22 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
       if (response.ok) {
         const result = await response.json();
         toast.success("Reservation successful!");
-        setReservation({ name: "", phone: "", date: "", time: "", persons: "" }); // Reset form
-        setShowReservationForm(false); // Close form on success
       } else {
-        toast.error("Failed to reserve. Please try again.");
+        toast.error("Failed to reserve. Please try again.")
       }
     } catch (error) {
       console.error("Error sending reservation:", error);
     }
   };
 
+  // Handle reservation submission
   const handleReservationSubmit = () => {
     sendReservationData();
+  };
+
+  // Toggle reservation form visibility
+  const toggleReservationForm = () => {
+    setShowReservationForm(!showReservationForm);
   };
 
   return (
@@ -450,13 +449,15 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
           />
         )}
       </div>
+
       <ToastContainer />
 
       {!isAddpage && !isMenu && tableNum === 0 && (
         <>
           <button onClick={toggleReservationForm} className="reservation-btn">
-            {showReservationForm ? "Close Reservation Form" : "Reserve Table"}
+            {showReservationForm ? "Close Reservation Form" : "Reserve a Table"}
           </button>
+
           {showReservationForm && (
             <div className="reservation-form">
               <h4>Reserve a Table</h4>
@@ -508,49 +509,23 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
                 </div>
 
                 <div className="reservation-input">
-                  <select
+                  <input
+                    type="number"
                     name="persons"
                     value={reservation.persons}
                     onChange={handleReservationChange}
                     required
+                    placeholder="Persons"
                     className="reservation-persons"
-                  >
-                    <option value="" disabled>
-                      Persons
-                    </option>
-                    {[...Array(20).keys()].map((num) => (
-                      <option key={num + 1} value={num + 1}>
-                        {num + 1}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
-
-                <button
-                  type="button"
-                  onClick={handleReservationSubmit}
-                  className="reservation-btn"
-                >
-                  Reserve
-                </button>
               </form>
+              <button onClick={handleReservationSubmit} className="reservation-btn">
+                Submit
+              </button>
             </div>
           )}
         </>
-      )}
-
-      {!isAddpage && !isMenu && (
-        <div className="wrap-input-17">
-          <div className="search-box">
-            <button className="btn-search">🔍</button>
-            <input
-              onChange={onSearchChange}
-              type="text"
-              className="input-search"
-              placeholder="Search..."
-            />
-          </div>
-        </div>
       )}
     </>
   );
