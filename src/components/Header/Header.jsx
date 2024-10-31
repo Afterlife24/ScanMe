@@ -376,7 +376,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     setOption(true);
   };
 
-  // Handle reservation form inputs
   const handleReservationChange = (e) => {
     const { name, value } = e.target;
     setReservation((prev) => ({
@@ -385,7 +384,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     }));
   };
 
-  //  API endpoint
   const sendReservationData = async () => {
     try {
       const response = await fetch("https://server3-server3.gofastapi.com/reserveTable", {
@@ -397,7 +395,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
       });
 
       if (response.ok) {
-        const result = await response.json();
         toast.success("Reservation successful!");
       } else {
         toast.error("Failed to reserve. Please try again.")
@@ -407,12 +404,10 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     }
   };
 
-  // Handle reservation submission
   const handleReservationSubmit = () => {
     sendReservationData();
   };
 
-  // Toggle reservation form visibility
   const toggleReservationForm = () => {
     setShowReservationForm(!showReservationForm);
   };
