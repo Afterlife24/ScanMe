@@ -327,7 +327,7 @@ const AddedItems = () => {
 
     try {
       setLoading(true);
-      const response = await fetch('https://server2-server2.gofastapi.com/sendOrder', {
+      const response = await fetch('https://server3-server3.gofastapi.com/sendOrder', {
       
         method: 'POST',
         headers: {
