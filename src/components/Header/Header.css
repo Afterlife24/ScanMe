@@ -609,32 +609,32 @@
   position: relative;
 }
 
-.reservation-date::before {
-  content: attr(placeholder);
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #000000;
-  pointer-events: none;
-}
+@media (max-width: 480px) {
+  .reservation-date::before {
+    content: attr(placeholder);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+    pointer-events: none;
+  }
 
-.reservation-date:not(:placeholder-shown)::before {
-  content: 'Date';
-}
+  .reservation-date:not(:placeholder-shown)::before {
+    content: 'Date';
+  }
 
+  .reservation-time::before {
+    content: attr(placeholder);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+    pointer-events: none;
+  }
 
-
-.reservation-time::before {
-  content: attr(placeholder);
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #000000;
-  pointer-events: none;
-}
-
-.reservation-time:not(:placeholder-shown)::before {
-  content: 'Time';
+  .reservation-time:not(:placeholder-shown)::before {
+    content: 'Time';
+  }
 }
