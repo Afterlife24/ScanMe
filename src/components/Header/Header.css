@@ -604,3 +604,34 @@
     width: 100%;
   }
 }
+
+
+
+/* Adding icons for Date and Time inputs on mobile screens */
+@media (max-width: 768px) {
+
+  .reservation-input {
+    position: relative;
+    /* For positioning the icons */
+  }
+
+  /* Calendar icon for date input */
+  .reservation-date {
+    padding-left: 30px;
+    /* Space for the icon */
+    background-image: url('https://img.icons8.com/ios-glyphs/30/calendar.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+  }
+
+  /* Clock icon for time input */
+  .reservation-time {
+    padding-left: 30px;
+    /* Space for the icon */
+    background-image: url('https://img.icons8.com/ios-glyphs/30/clock.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+  }
+}
