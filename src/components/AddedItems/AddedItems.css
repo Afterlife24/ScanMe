@@ -249,7 +249,7 @@ p {
   align-items: center;
   justify-content: space-around;
   margin-bottom: 15px;
-  
+
   border-radius: 10px;
   /* background-color: rgb(200, 221, 233); */
   background-color: #cfcbe1;
@@ -302,7 +302,7 @@ p {
   width: 60%;
 }
 
-.added-item-edit + button > img {
+.added-item-edit+button>img {
   width: 80%;
 }
 
@@ -335,17 +335,25 @@ p {
   border-radius: 20px;
   border: none;
   margin: 0.5rem;
-  background-color: #f44336; /* Red background */
-  color: white; /* White text color */
-  font-size: 16px; /* Increase font size */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+  background-color: #f44336;
+  /* Red background */
+  color: white;
+  /* White text color */
+  font-size: 16px;
+  /* Increase font size */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Add shadow */
+  transition: background-color 0.3s, transform 0.2s;
+  /* Smooth transitions */
 }
 
 .go-back:hover {
-  background-color: #d32f2f; /* Darker red on hover */
-  transform: translateY(-2px); /* Lift effect on hover */
+  background-color: #d32f2f;
+  /* Darker red on hover */
+  transform: translateY(-2px);
+  /* Lift effect on hover */
 }
 
 .send-order {
@@ -353,17 +361,25 @@ p {
   border-radius: 20px;
   border: none;
   margin: 0.5rem;
-  background-color: #4caf50; /* Green background */
-  color: white; /* White text color */
-  font-size: 16px; /* Increase font size */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+  background-color: #4caf50;
+  /* Green background */
+  color: white;
+  /* White text color */
+  font-size: 16px;
+  /* Increase font size */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Add shadow */
+  transition: background-color 0.3s, transform 0.2s;
+  /* Smooth transitions */
 }
 
 .send-order:hover {
-  background-color: #388e3c; /* Darker green on hover */
-  transform: translateY(-2px); /* Lift effect on hover */
+  background-color: #388e3c;
+  /* Darker green on hover */
+  transform: translateY(-2px);
+  /* Lift effect on hover */
 }
 
 
@@ -405,4 +421,63 @@ p {
 .orders-total-cost {
   text-align: end;
   margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.scrolling-text-container {
+  width: 100%;
+  /* Full width of the container */
+  overflow: hidden;
+  /* Hides the text once it moves out of the view */
+  background-color: #e0e0e0;
+  /* Optional: Adds a background to make it noticeable */
+  color: #721c24;
+  /* Text color */
+  padding: 10px 0;
+  /* Adds padding to make it more readable */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  /* Prevents the text from wrapping to the next line */
+  position: relative;
+  animation: scroll-left 15s linear infinite;
+  /* Continuous scrolling */
+  transform: translateX(100%);
+  /* Set the initial position to right of the container */
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+    /* Start from the right (outside the container) */
+  }
+
+  100% {
+    transform: translateX(-100%);
+    /* Move to the left, disappearing after it's out */
+  }
 }
