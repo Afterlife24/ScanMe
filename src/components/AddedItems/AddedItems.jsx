@@ -289,15 +289,9 @@ const AddedItems = () => {
       return acc;
     }
   }, 0);
-
+  
   const generateRandomTokenId = () => {
     return Math.floor(1000 + Math.random() * 9000).toString();
-  };
-
-  // Function to check if the current time is between 11 PM and 6 AM
-  const isOrderRestrictedTime = () => {
-    const currentHour = new Date().getHours();
-    return currentHour >= 19 || currentHour < 6; // true if time is 11 PM to 6 AM
   };
 
   const sendOrder = async () => {
@@ -308,12 +302,6 @@ const AddedItems = () => {
 
     if (tableNum < 0 || tableNum > 10) {
       toast.error("Invalid table number. Please choose a table number between 0 and 10.");
-      return;
-    }
-
-    // Check if the table number is 0 and it's within the restricted hours
-    if (tableNum === 0 && isOrderRestrictedTime()) {
-      toast.error("Orders cannot be placed between 11 PM and 6 AM.");
       return;
     }
 
@@ -328,6 +316,7 @@ const AddedItems = () => {
 
     const newTokenId = generateRandomTokenId();
 
+
     const orderData = {
       tableNumber: tableNumberInt,
       dishes,
@@ -338,34 +327,41 @@ const AddedItems = () => {
 
     try {
       setLoading(true);
-      const response = await fetch('http://server3-server3.gofastapi.com/sendOrder', {
+      const response = await fetch('https://server3-server3.gofastapi.com/sendOrder', {
+      
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(orderData),
-      });
+    });
+      console.log("1st place");
       if (response.ok) {
         clearItems();
         setOrders(prevOrders => [
-          {
-            ...orderData,
-            total: totalCost,
-            timestamp: new Date(),
-          },
-          ...prevOrders
+            {
+                // tableNumber: tableNumberInt,
+                // dishes,
+                // total: totalCost,
+                // timestamp: new Date(),
+                // tokenId: newTokenId // Add tokenId to the order
+                ...orderData,
+                total: totalCost,
+                timestamp: new Date(),
+            },
+            ...prevOrders
         ]);
         
         setOrderSent(true);
         toast.success("Order sent successfully!");
-      } else {
-        const errorData = await response.json();
+    } else {
+        const errorData = await response.json(); // Attempt to read the error message
         console.error('Failed to send order:', errorData);
         toast.error("Failed to send order: " + errorData.error);
-      }
+    }
     } catch (error) {
       console.error('Error sending order:', error);
-      toast.error("Error sending order. Please try again.");
+      toast.error("Error sending order. Please try again. this catch part");
     } finally {
       setLoading(false);
     }
@@ -378,17 +374,6 @@ const AddedItems = () => {
       <div className="added-items-main">
         <Header isAddpage={isAddpage} />
         <ToastContainer />
-
-        {/* Marquee notification when the order is restricted */}
-        {tableNum === 0 && isOrderRestrictedTime() && (
-          <div className="scrolling-text-container">
-              <p className="scrolling-text">
-                  Orders cannot be placed between 8 PM and 6 AM. Please try again later.
-              </p>
-          </div>
-
-        )}
-
         <div className="added-items">
           {orderSent && tableNum === 0 ? (
             <h3 style={{ textAlign: "center" }}>
@@ -445,7 +430,7 @@ const AddedItems = () => {
           <button
             className="send-order"
             onClick={sendOrder}
-            disabled={loading || (tableNum === 0 && isOrderRestrictedTime())}
+            disabled={loading}
           >
             {loading ? "Sending..." : "Send Order"}
           </button>
