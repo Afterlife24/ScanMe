@@ -574,7 +574,7 @@ const AddedItems = () => {
       const currentHour = currentTime.getHours();
 
       // Disable orders between 19:00 (7 PM) and 05:00 (5 AM)
-      if ((currentHour >= 19 || currentHour < 10) || (currentHour >= 12 || currentHour < 14.30)) {
+      if (currentHour >= 18 || currentHour < 10)  {
         setIsOrderDisabled(true);
       } else {
         setIsOrderDisabled(false);
@@ -705,7 +705,7 @@ const AddedItems = () => {
 
           {isOrderDisabled && (
             <marquee className="order-disabled-marquee">
-              ❗❗The order button is disabled from 19:00 to 10:00 and 12.00 to 14.30. Please place your order during available hours.❗❗
+              ❗❗The order button is disabled from 18:00 to 10:00 . Please place your order during available hours.❗❗
             </marquee>
           )}
 
