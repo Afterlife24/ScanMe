@@ -692,7 +692,7 @@ const AddedItems = () => {
         {tableNum === 0 && isOrderRestrictedTime() && (
           <div className="scrolling-text-container">
               <p className="scrolling-text">
-                  Orders cannot be placed between 8 PM and 6 AM. Please try again later.
+                 ❗❗ Orders cannot be placed between 8 PM and 6 AM. Please try again later.❗❗
               </p>
           </div>
 

@@ -449,9 +449,9 @@ p {
   /* Full width of the container */
   overflow: hidden;
   /* Hides the text once it moves out of the view */
-  background-color: #f8d7da;
+  background-color:linear-gradient(#fff7f2, #efd6c7);
   /* Optional: Adds a background to make it noticeable */
-  color: #721c24;
+  color: #f8d7da;
   /* Text color */
   padding: 10px 0;
   /* Adds padding to make it more readable */
@@ -461,6 +461,7 @@ p {
 
 .scrolling-text {
   display: inline-block;
+  color : rgb(26, 25, 25);
   white-space: nowrap;
   /* Prevents the text from wrapping to the next line */
   position: relative;
