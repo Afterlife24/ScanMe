@@ -444,8 +444,40 @@ p {
 
 
 
-.order-disabled-marquee {
-  color: red;
-  font-weight: bold;
-  margin: 10px 0;
+.scrolling-text-container {
+  width: 100%;
+  /* Full width of the container */
+  overflow: hidden;
+  /* Hides the text once it moves out of the view */
+  background-color: #f8d7da;
+  /* Optional: Adds a background to make it noticeable */
+  color: #721c24;
+  /* Text color */
+  padding: 10px 0;
+  /* Adds padding to make it more readable */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  /* Prevents the text from wrapping to the next line */
+  position: relative;
+  animation: scroll-left 15s linear infinite;
+  /* Continuous scrolling */
+  transform: translateX(100%);
+  /* Set the initial position to right of the container */
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+    /* Start from the right (outside the container) */
+  }
+
+  100% {
+    transform: translateX(-100%);
+    /* Move to the left, disappearing after it's out */
+  }
 }
