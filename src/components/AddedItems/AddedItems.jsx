@@ -575,7 +575,7 @@ const AddedItems = () => {
 
       // Disable orders between 19:00 (7 PM) and 05:00 (5 AM)
       // if ((currentHour >= 18 || currentHour < 10)||(currentHour >= 18 || currentHour < 10))  {
-      if (currentHour >= 21 || currentHour < 22)  {
+      if (currentHour >= 21 || currentHour < 21.30)  {
         setIsOrderDisabled(true);
       } else {
         setIsOrderDisabled(false);
