@@ -749,18 +749,18 @@ const AddedItems = () => {
             <h3>Coût total: ${totalCost.toFixed(2)}</h3>
           </div>
           <button className="go-back" onClick={handleGoBack}>
-            Go Back
+            Retour
           </button>
           <button
             className="send-order"
             onClick={sendOrder}
             disabled={loading || (tableNum === 0 && isOrderRestrictedTime())}
           >
-            {loading ? "Sending..." : "Send Order"}
+            {loading ? "Sending..." : "Envoyer la commande"}
           </button>
         </div>
         <div className="your-orders">
-          <h2>Your Orders</h2>
+          <h2>Vos commandes</h2>
           {orders.length === 0 ? (
             <p>Aucune commande passée pour le moment...</p>
           ) : (
@@ -790,17 +790,17 @@ const AddedItems = () => {
                         ))}
                       </ul>
                       <div className="order-total-cost">
-                        <h4>Total Amount: ${order.total.toFixed(2)}</h4>
+                        <h4>Montant total: ${order.total.toFixed(2)}</h4>
                       </div>
                       <div className="order-timestamp">
-                        <p>Ordered At: {new Date(order.timestamp).toLocaleString()}</p>
+                        <p>Commandé à: {new Date(order.timestamp).toLocaleString()}</p>
                       </div>
                     </div>
                   </li>
                 ))}
               </ul>
               <div className="orders-total-cost">
-                <h3>Total Amount of All Orders: ${ordersTotalCost.toFixed(2)}</h3>
+                <h3>Montant total de toutes les commandes: ${ordersTotalCost.toFixed(2)}</h3>
               </div>
             </>
           )}
