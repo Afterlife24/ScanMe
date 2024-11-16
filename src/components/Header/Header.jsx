@@ -187,13 +187,13 @@
 
 //         {!isMenu && (
 //           <div className="welcome">
-//             <h2>SOORAJ☀️</h2>
+//             <h2>SURAJ☀️</h2>
 //           </div>
 //         )}
 
 //         {isMenu && (
 //           <div className="welcome">
-//             <h2>SOORAJ☀️</h2>
+//             <h2>SURAJ☀️</h2>
 //           </div>
 //         )}
 
@@ -410,7 +410,7 @@
 //         />
 
 //         <div className="welcome">
-//           <h2>SOORAJ☀️</h2>
+//           <h2>SURAJ☀️</h2>
 //         </div>
 
 //         {isAddpage ? (
@@ -703,13 +703,13 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
         
         {!isMenu && (
           <div className="welcome">
-            <h2>SOORAJ☀️</h2>
+            <h2>SURAJ☀️</h2>
           </div>
         )}
 
         {isMenu && (
           <div className="welcome">
-            <h2>SOORAJ☀️</h2>
+            <h2>SURAJ☀️</h2>
           </div>
         )}
 
@@ -738,7 +738,7 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
             className="toggle-form-btn"
           >
             {/* <FaCalendarCheck className="button-icon" />  */}
-            {isFormVisible ? "Close Reservation Form" : "Tap to Reserve a Table"}
+            {isFormVisible ? "Close Reservation Form" : "APPUYEZ POUR RÉSERVER UNE TABLE"}
           </button>
           
           {isFormVisible && (

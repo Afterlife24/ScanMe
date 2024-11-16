@@ -692,7 +692,7 @@ const AddedItems = () => {
         {tableNum === 0 && isOrderRestrictedTime() && (
           <div className="scrolling-text-container">
               <p className="scrolling-text">
-                 ❗❗ Orders cannot be placed between 10 PM and 6 AM. Please try again later.❗❗
+                 ❗❗ Les commandes peuvent être passées entre 22h et 6h, ainsi qu'entre 12h00 et 13h30.❗❗
               </p>
           </div>
 
@@ -701,7 +701,7 @@ const AddedItems = () => {
         <div className="added-items">
           {orderSent && tableNum === 0 ? (
             <h3 style={{ textAlign: "center" }}>
-              Collect the order from the restaurant and Remember the Token ID
+              Souvenez-vous de l'ID de jeton, récupérez la commande et ne fermez pas l'onglet.
             </h3>
           ) : (
             <h3 style={{ textAlign: "center" }}>
@@ -710,7 +710,7 @@ const AddedItems = () => {
           )}
 
           {addedItems.length === 0 ? (
-            <p>No items added yet...</p>
+            <p>Aucun article ajouté pour le moment..</p>
           ) : (
             <ul>
               {addedItems.map((item, index) => (
@@ -729,7 +729,7 @@ const AddedItems = () => {
                     >
                       <h3 className="added-item-name">{item.name}</h3>
                       <p className="added-item-price">{item.price}</p>
-                      <span>Quantity X{item.count}</span>
+                      <span>Quantité X{item.count}</span>
                     </div>
                     <button className="added-item-edit" onClick={() => handleItemClick(item.id)}>
                       <img src={icons.edit_icon} alt="" />
@@ -746,7 +746,7 @@ const AddedItems = () => {
             </ul>
           )}
           <div className="total-cost">
-            <h3>Total Cost: ${totalCost.toFixed(2)}</h3>
+            <h3>Coût total: ${totalCost.toFixed(2)}</h3>
           </div>
           <button className="go-back" onClick={handleGoBack}>
             Go Back
@@ -762,15 +762,15 @@ const AddedItems = () => {
         <div className="your-orders">
           <h2>Your Orders</h2>
           {orders.length === 0 ? (
-            <p>No orders placed yet...</p>
+            <p>Aucune commande passée pour le moment...</p>
           ) : (
             <>
               <ul>
                 {orders.map((order, index) => (
                   <li key={index}>
                     <div className="order">
-                      <h3>Table Number: {order.tableNumber}</h3>
-                      <h4>Token ID: {order.tokenId}</h4> {/* Display the token ID here */}
+                      <h3>Numéro de table : {order.tableNumber}</h3>
+                      <h4>ID de jeton: {order.tokenId}</h4> {/* Display the token ID here */}
                       <ul>
                         {order.dishes.map((dish, dishIndex) => (
                           <li key={dishIndex}>
