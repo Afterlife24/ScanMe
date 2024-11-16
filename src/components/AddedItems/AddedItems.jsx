@@ -756,7 +756,7 @@ const AddedItems = () => {
             onClick={sendOrder}
             disabled={loading || (tableNum === 0 && isOrderRestrictedTime())}
           >
-            {loading ? "Sending..." : "Envoyer la commande"}
+            {loading ? "Sending..." : "envoi"}
           </button>
         </div>
         <div className="your-orders">
