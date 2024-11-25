@@ -482,3 +482,71 @@ p {
     /* Move to the left, disappearing after it's out */
   }
 }
+
+
+
+
+
+
+
+
+
+
+/* Styling for the success message */
+.order-success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeOut 3s forwards;
+}
+
+/* Fade-out animation for success message */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 600px) {
+  .order-success-message {
+    width: 80%;
+    /* Adjust width for smaller screens */
+    font-size: 14px;
+    /* Smaller font size on mobile */
+    padding: 12px;
+    /* Reduce padding */
+    top: 10px;
+    /* Adjust top position for mobile */
+  }
+}
+
+@media (max-width: 400px) {
+  .order-success-message {
+    width: 90%;
+    /* Further reduce width on very small screens */
+    font-size: 12px;
+    /* Smaller font size for extra small screens */
+    padding: 10px;
+    /* Further reduce padding */
+    top: 8px;
+    /* Adjust top position for very small screens */
+  }
+}
