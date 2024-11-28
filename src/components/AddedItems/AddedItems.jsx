@@ -915,6 +915,15 @@ const AddedItems = () => {
   const [orderSent, setOrderSent] = useState(false);
   const [tokenId, setTokenId] = useState(''); // State to store the token ID
   const [successMessage, setSuccessMessage] = useState(''); // State to show success message
+  const [isWednesday, setIsWednesday] = useState(false);
+
+  useEffect(() => {
+    // Check if today is Wednesday
+    const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ..., 3 = Wednesday
+    setIsWednesday(today === 3);
+  }, []);
+
+
 
   useEffect(() => {
     sessionStorage.setItem('orders', JSON.stringify(orders));
@@ -958,9 +967,27 @@ const AddedItems = () => {
 
   // Function to check if the current time is between 11 PM and 6 AM
   const isOrderRestrictedTime = () => {
-    const currentHour = new Date().getHours();
-    return currentHour >= 22 || currentHour < 6; // true if time is 11 PM to 6 AM
-  };
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinutes = currentTime.getMinutes();
+
+    // Function to check if the time is within a specific allowed range
+    const isWithinAllowedRange = (startHour, startMinutes, endHour, endMinutes) => {
+        const startTime = startHour * 60 + startMinutes;
+        const endTime = endHour * 60 + endMinutes;
+        const currentTimeInMinutes = currentHour * 60 + currentMinutes;
+
+        return currentTimeInMinutes >= startTime && currentTimeInMinutes < endTime;
+    };
+
+    // Check if the current time falls within any of the allowed ranges
+    const isAllowed = 
+        isWithinAllowedRange(10, 30, 14, 0) || // 10:30 AM to 2:00 PM
+        isWithinAllowedRange(18, 30, 22, 0);  // 6:30 PM to 10:00 PM
+
+    return !isAllowed; // Restrict if not in the allowed range
+};
+
 
   const sendOrder = async () => {
     if (addedItems.length === 0) {
@@ -1042,10 +1069,10 @@ const AddedItems = () => {
         <ToastContainer />
 
         {/* Marquee notification when the order is restricted */}
-        {tableNum === 0 && isOrderRestrictedTime() && (
+        {!isWednesday && tableNum === 0 && isOrderRestrictedTime() && (
           <div className="scrolling-text-container">
               <p className="scrolling-text">
-                 ❗❗ Les commandes peuvent être passées entre 22h et 6h, ainsi qu'entre 12h00 et 13h30.❗❗
+                 ❗❗ Order  between 10:30 AM to 2:00 PM and 6:30 PM to 10:00 PM❗❗
               </p>
           </div>
         )}
@@ -1113,7 +1140,7 @@ const AddedItems = () => {
           <button
             className="send-order"
             onClick={sendOrder}
-            disabled={loading || (tableNum === 0 && isOrderRestrictedTime())}
+            disabled={loading || isWednesday} // Disable on Wednesday
           >
             {loading ? "Sending..." : "envoi"}
           </button>
@@ -1128,7 +1155,10 @@ const AddedItems = () => {
                 {orders.map((order, index) => (
                   <li key={index}>
                     <div className="order">
-                      <h3>Numéro de table : {order.tableNumber}</h3>
+                      {/* <h3>Numéro de table : {order.tableNumber}</h3> */}
+                      {tableNum && (
+                          <h3>Numéro de table : {order.tableNumber}</h3>
+                      )}
                       <h4>ID de jeton: {order.tokenId}</h4> {/* Display the token ID here */}
                       <ul>
                         {order.dishes.map((dish, dishIndex) => (

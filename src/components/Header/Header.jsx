@@ -31,10 +31,9 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
   const handleReservationChange = (e) => {
     const { name, value } = e.target;
 
-    // Prevent selecting Fridays in the date picker
     if (name === "date") {
       const selectedDate = new Date(value);
-      if (selectedDate.getDay() === 3) { // 5 = Friday
+      if (selectedDate.getDay() === 3) { // 3 = Wednesday
         toast.error("Reservations are not allowed on Wednesdays.", { position: "top-right" });
         return;
       }
@@ -46,7 +45,6 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
     }));
   };
 
-  // Check if all fields are filled
   const isFormComplete = Object.values(reservation).every((value) => value.trim() !== "");
 
   const sendReservationData = async () => {
@@ -72,17 +70,20 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
   };
 
   const handleReservationSubmit = () => {
-    // Check if all fields are filled
-    const isFormComplete = Object.values(reservation).every((value) => value.trim() !== "");
-
     if (!isFormComplete) {
       toast.error("Please fill in all the details before submitting.", { position: "top-right" });
       return;
     }
 
     sendReservationData();
-    setReservation({ name: "", phone: "", date: "", time: "", persons: "" }); // Clear form fields
-    setIsFormVisible(false); // Close form
+    setReservation({ name: "", phone: "", date: "", time: "", persons: "" });
+    setIsFormVisible(false);
+  };
+
+  // Function to check if it's Wednesday
+  const isWednesday = () => {
+    const today = new Date();
+    return today.getDay() === 3; // 3 = Wednesday
   };
 
   return (
@@ -127,6 +128,13 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
         )}
       </div>
 
+      {/* Conditional container for Wednesday */}
+      {isWednesday() && (
+        <div className="wednesday-message">
+          <h3>We are not serving on Wednesdays</h3>
+        </div>
+      )}
+
       {!isAddpage && !isMenu && tableNum === 0 && (
         <>
           <button
@@ -138,6 +146,10 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
 
           {isFormVisible && (
             <div className="reservation-form">
+              {/* Reservation timing notice */}
+                  <p className="reservation-timing-notice">
+                    Reserve between <br></br> 10:30 AM to 2:00 PM and 6:30 PM to 10:00 PM  
+                  </p>
               <form className="reservation-row">
                 <div className="reservation-input">
                   <input
@@ -230,3 +242,4 @@ function Header({ onSearchChange, isMenu, isAddpage }) {
 }
 
 export default Header;
+
